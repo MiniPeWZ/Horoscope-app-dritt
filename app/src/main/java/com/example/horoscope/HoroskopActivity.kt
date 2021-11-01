@@ -33,7 +33,7 @@ class HoroskopActivity : AppCompatActivity() {
                 formatResponse(response)
             },
             { error ->
-                findViewById<TextView>(R.id.currentDate).text = "Kunne ikke laste horoskop"
+                findViewById<TextView>(R.id.currentDate).text = "Could not load horoscope"
 
             }
         )
