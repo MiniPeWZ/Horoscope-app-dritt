@@ -24,29 +24,24 @@ class MainActivity : AppCompatActivity() {
 
 
         val spinnerSign: Spinner = findViewById(R.id.spinner_sign)
-        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
                 this,
                 R.array.signs,
                 android.R.layout.simple_spinner_item
         ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
+
             spinnerSign.adapter = adapter
         }
 
 
         val spinnerDay: Spinner = findViewById(R.id.spinner_day)
-        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,
             R.array.days,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
             spinnerDay.adapter = adapter
         }
 
@@ -55,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         start.setOnClickListener() {
             val setSign = spinnerSign.selectedItem.toString()
             val setDay = spinnerDay.selectedItem.toString()
-
             val intent = Intent(Intent(this@MainActivity, HoroskopActivity::class.java))
             intent.putExtra("url", createURL(setSign, setDay))
             startActivity(intent)

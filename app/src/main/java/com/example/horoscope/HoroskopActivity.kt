@@ -26,22 +26,18 @@ class HoroskopActivity : AppCompatActivity() {
 
     private fun APICall(url: String) {
         requestQueue = Volley.newRequestQueue(this)
-        //Lager en request
+
         val request = StringRequest(
             Request.Method.POST, url,
             { response ->
-                //Gjør noe med svaret
                 formatResponse(response)
             },
             { error ->
-                //Håndterer eventuelle feil
                 findViewById<TextView>(R.id.currentDate).text = "Kunne ikke laste horoskop"
 
             }
         )
-        //Gir requesten en tag
         request.tag = "horoskop"
-        //Legger til requesten i køen
         requestQueue?.add(request)
     }
 
@@ -54,6 +50,7 @@ class HoroskopActivity : AppCompatActivity() {
         try {
             val liste = resp.split("\"")
 
+            findViewById<TextView>(R.id.dateRange).text = liste[3]
 
             findViewById<TextView>(R.id.currentDate).text = liste[7]
 
@@ -73,7 +70,7 @@ class HoroskopActivity : AppCompatActivity() {
 
         } catch (e: IndexOutOfBoundsException){
             val error = findViewById<TextView>(R.id.description)
-            error.text = "Kunne ikke laste Horoskop"
+            error.text = "Could not load horoscope"
 
         }
     }
